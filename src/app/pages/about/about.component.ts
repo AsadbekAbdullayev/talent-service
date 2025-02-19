@@ -12,12 +12,26 @@ import { CommonModule } from '@angular/common';
 })
 export class AboutComponent implements OnInit {
   constructor(private userStorageService: UserStorageService) {}
-  users: any[] = [];
+  users: any[] = [
+    {
+      firstName: 'Asadbek',
+      lastName: 'Abdullayev',
+      email: 'asadbekmmm127@gmail.com',
+      jobPositon: 'Frontend developer',
+      selectedSkills: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React'],
+    },
+    {
+      firstName: 'Javlon ',
+      lastName: 'Shamsiddinov',
+      email: 'djavlon@gmail.com',
+      jobPositon: 'Backend developer',
+      selectedSkills: ['HTML', 'CSS', 'JavaScript'],
+    },
+  ];
   ngOnInit(): void {
     this.loadUsersFromLocalStorage();
   }
   loadUsersFromLocalStorage(): void {
     this.users = this.userStorageService.getUsers();
-    console.log(this.users);
   }
 }
