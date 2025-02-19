@@ -1,0 +1,15 @@
+.nz-select {
+  width: 100%;
+  border-radius: 12px !important;
+}
+::ng-deep .ant-select-selector {
+  border-radius: 12px !important;
+  height: 40px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  height: 40px !important; /* Adjust height as needed */
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}

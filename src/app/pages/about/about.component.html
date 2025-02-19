@@ -1,0 +1,101 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-4xl font-bold text-blue-700 text-center">Our talents</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <nz-card
+      *ngFor="let user of users"
+      [nzTitle]="user.firstName + ' ' + user.lastName"
+      class="shadow-lg"
+    >
+      <p class="text-gray-600 text-sm">{{ user.jobPosition }}</p>
+
+      <!-- Display Skills as Tags -->
+      <div class="mt-2 flex flex-wrap gap-2">
+        <nz-tag *ngFor="let skill of user.selectedSkills" nzColor="blue">
+          {{ skill }}
+        </nz-tag>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Page Title -->
+  <h1 class="text-4xl font-bold text-blue-700 text-center">
+    About JobSearcher
+  </h1>
+  <p class="text-lg text-gray-700 text-center mt-3">
+    Helping job seekers find the best opportunities at top companies worldwide.
+  </p>
+
+  <!-- Why Choose JobSearcher -->
+  <div class="mt-10">
+    <h2 class="text-2xl font-bold text-gray-800">Why JobSearcher?</h2>
+    <p class="text-gray-700 mt-3">
+      JobSearcher is designed for professionals who aspire to work at leading
+      global companies, including Google, Amazon, Meta, and more. We provide an
+      easy-to-use platform that connects job seekers with verified job postings.
+    </p>
+  </div>
+
+  <!-- Features Section -->
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Real-time Job Listings -->
+    <div class="bg-white shadow-md p-6 rounded-lg">
+      <h3 class="text-xl font-semibold text-blue-600">
+        Real-time Job Listings
+      </h3>
+      <p class="text-gray-600 mt-2">
+        We fetch the latest job postings from verified sources to keep you
+        updated.
+      </p>
+    </div>
+
+    <!-- Top Companies -->
+    <div class="bg-white shadow-md p-6 rounded-lg">
+      <h3 class="text-xl font-semibold text-blue-600">
+        Top Company Opportunities
+      </h3>
+      <p class="text-gray-600 mt-2">
+        Search for jobs from world-class companies like Google, Amazon, and
+        Microsoft.
+      </p>
+    </div>
+
+    <!-- AI-powered Job Search -->
+    <div class="bg-white shadow-md p-6 rounded-lg">
+      <h3 class="text-xl font-semibold text-blue-600">
+        AI-powered Job Matching
+      </h3>
+      <p class="text-gray-600 mt-2">
+        Our smart AI helps you find the best job based on your skills and
+        experience.
+      </p>
+    </div>
+  </div>
+
+  <!-- Who is This For? -->
+  <div class="mt-10">
+    <h2 class="text-2xl font-bold text-gray-800">Who is JobSearcher For?</h2>
+    <ul class="list-disc list-inside text-gray-700 mt-3 space-y-2">
+      <li>
+        Students and fresh graduates looking for internships or first jobs.
+      </li>
+      <li>Experienced professionals seeking career growth at top companies.</li>
+      <li>Freelancers searching for remote work opportunities.</li>
+    </ul>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="mt-10 text-center">
+    <h2 class="text-2xl font-bold text-gray-800">
+      Start Your Job Search Today!
+    </h2>
+    <p class="text-gray-700 mt-3">
+      Browse thousands of job listings and apply now.
+    </p>
+    <a
+      routerLink="/jobs"
+      class="mt-5 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
+    >
+      Browse Jobs
+    </a>
+  </div>
+</div>

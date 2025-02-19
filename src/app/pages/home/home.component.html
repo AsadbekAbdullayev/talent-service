@@ -1,0 +1,170 @@
+<div class="container mx-auto p-6">
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Enter your information and join us"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <div class="flex items-center justify-center gap-2.5">
+        <input
+          nz-input
+          placeholder="FirstName"
+          [(ngModel)]="firstName"
+          class="!h-10 !rounded-xl"
+        />
+        <input
+          nz-input
+          placeholder="Lastname"
+          [(ngModel)]="lastName"
+          class="h-10 !rounded-xl"
+        />
+      </div>
+
+      <div class="flex items-center justify-center gap-2.5 mt-2.5">
+        <input
+          nz-input
+          placeholder="Email"
+          [(ngModel)]="email"
+          class="!h-10 !rounded-xl"
+        />
+        <input
+          nz-input
+          placeholder="Job positon"
+          [(ngModel)]="jobPositon"
+          class="h-10 !rounded-xl"
+        />
+      </div>
+
+      <nz-select
+        [(ngModel)]="selectedSkills"
+        nzAllowClear
+        class="w-full"
+        nzPlaceHolder="Select your skills"
+        style="margin-top: 10px; border-radius: 12px; height: 40px"
+        nzMode="multiple"
+      >
+        @for (item of skills; track item) {
+        <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+        }
+      </nz-select>
+    </ng-container>
+
+    <div *nzModalFooter>
+      <div class="flex items-center justify-end gap-2.5">
+        <button
+          nz-button
+          nzType="default"
+          (click)="handleCancel()"
+          class="mt-5 cursor-pointer inline-block px-3 py-2 bg-white !text-black rounded-lg shadow-md"
+        >
+          Back
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitForm()"
+          class="mt-5 cursor-pointer inline-block px-3 py-2 bg-blue-500 !text-white rounded-lg shadow-md hover:bg-blue-700"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </nz-modal>
+
+  <!-- Hero Section -->
+  <div class="text-center">
+    <h1 class="text-4xl font-bold text-blue-700">Find Your Dream Job</h1>
+    <p class="text-lg text-gray-700 mt-3">
+      Explore thousands of jobs from top companies worldwide!
+    </p>
+    <button
+      (click)="showModal()"
+      class="mt-5 cursor-pointer inline-block px-6 py-3 bg-blue-600 !text-white rounded-lg shadow-md hover:bg-blue-700"
+    >
+      Browse Jobs
+    </button>
+  </div>
+
+  <!-- Featured FANG Companies -->
+  <div class="mt-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Top Hiring Companies</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Google -->
+      <div class="bg-white shadow-md p-4 rounded-lg">
+        <img
+          src="https://logo.clearbit.com/google.com"
+          alt="Google"
+          class="w-32 mx-auto"
+        />
+        <h3 class="text-xl font-semibold mt-3 text-center">Google</h3>
+        <p class="text-gray-600 text-center mt-2">
+          Join Google and shape the future of AI, search, and technology.
+        </p>
+        <a
+          href="https://careers.google.com"
+          target="_blank"
+          class="mt-3 block text-blue-600 text-center"
+          >View Jobs</a
+        >
+      </div>
+
+      <!-- Meta -->
+      <div class="bg-white shadow-md p-4 rounded-lg">
+        <img
+          src="https://logo.clearbit.com/meta.com"
+          alt="Meta"
+          class="w-32 mx-auto"
+        />
+        <h3 class="text-xl font-semibold mt-3 text-center">Meta</h3>
+        <p class="text-gray-600 text-center mt-2">
+          Be part of the next evolution of the internet at Meta.
+        </p>
+        <a
+          href="https://www.metacareers.com"
+          target="_blank"
+          class="mt-3 block text-blue-600 text-center"
+          >View Jobs</a
+        >
+      </div>
+
+      <!-- Amazon -->
+      <div class="bg-white shadow-md p-4 rounded-lg">
+        <img
+          src="https://logo.clearbit.com/amazon.com"
+          alt="Amazon"
+          class="w-32 mx-auto"
+        />
+        <h3 class="text-xl font-semibold mt-3 text-center">Amazon</h3>
+        <p class="text-gray-600 text-center mt-2">
+          Innovate and work with cutting-edge technology at Amazon.
+        </p>
+        <a
+          href="https://www.amazon.jobs"
+          target="_blank"
+          class="mt-3 block text-blue-600 text-center"
+          >View Jobs</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Facts -->
+  <div class="mt-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Job Market Facts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div class="bg-blue-100 p-4 rounded-lg">
+        <h3 class="text-xl font-bold text-blue-700">10M+</h3>
+        <p class="text-gray-600">Jobs Available</p>
+      </div>
+      <div class="bg-blue-100 p-4 rounded-lg">
+        <h3 class="text-xl font-bold text-blue-700">500+</h3>
+        <p class="text-gray-600">Top Companies Hiring</p>
+      </div>
+      <div class="bg-blue-100 p-4 rounded-lg">
+        <h3 class="text-xl font-bold text-blue-700">95%</h3>
+        <p class="text-gray-600">Job Seekers Hired in 3 Months</p>
+      </div>
+    </div>
+  </div>
+</div>
