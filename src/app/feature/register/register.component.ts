@@ -6,6 +6,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserStorageService } from '../../services/user-storage.service';
 import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-register',
   imports: [NzModalModule, FormsModule, NzSelectModule, NzInputModule],
@@ -13,96 +14,74 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  constructor(
-    private message: NzMessageService,
-    private userStorageService: UserStorageService
-  ) {}
   isVisible = false;
+
   // user details
   firstName = '';
   lastName = '';
   email = '';
-  jobPositon = '';
-  selectedSkills = [];
-  skills = [
-    'HTML',
-    'CSS',
-    'JavaScript',
-    'TypeScript',
-    'React',
-    'Angular',
-    'Vue.js',
-    'Svelte',
-    'Node.js',
-    'Express.js',
-    'Next.js',
-    'Nuxt.js',
-    'Bootstrap',
-    'Tailwind CSS',
-    'SASS',
-    'Less',
-    'Styled Components',
-    'Material UI',
-    'Ant Design',
-    'GraphQL',
-    'REST API',
-    'MongoDB',
-    'PostgreSQL',
-    'MySQL',
-    'Firebase',
-    'Docker',
-    'Kubernetes',
-    'Jenkins',
-    'WebAssembly',
-    'Three.js',
+  jobPosition = '';
+  selectedSkills: string[] = [];
+
+  readonly skills = [
+    'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angular', 'Vue.js', 'Svelte',
+    'Node.js', 'Express.js', 'Next.js', 'Nuxt.js', 'Bootstrap', 'Tailwind CSS', 'SASS',
+    'Less', 'Styled Components', 'Material UI', 'Ant Design', 'GraphQL', 'REST API',
+    'MongoDB', 'PostgreSQL', 'MySQL', 'Firebase', 'Docker', 'Kubernetes', 'Jenkins',
+    'WebAssembly', 'Three.js',
   ];
+
+  constructor(
+    private message: NzMessageService,
+    private userStorageService: UserStorageService
+  ) {}
 
   showModal(): void {
     this.isVisible = true;
   }
 
-  handleOk(): void {
-    this.isVisible = false;
-  }
-
   handleCancel(): void {
     this.isVisible = false;
   }
-  submitForm() {
-    if (
-      !this.firstName ||
-      !this.lastName ||
-      !this.email ||
-      !this.jobPositon ||
-      this.selectedSkills.length === 0
-    ) {
+
+  private resetForm(): void {
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+    this.jobPosition = '';
+    this.selectedSkills = [];
+  }
+
+  private isFormValid(): boolean {
+    return !!(
+      this.firstName &&
+      this.lastName &&
+      this.email &&
+      this.jobPosition &&
+      this.selectedSkills.length
+    );
+  }
+
+  submitForm(): void {
+    if (!this.isFormValid()) {
       this.message.error('All fields are required');
       return;
     }
-
-    // Save to localStorage
 
     const userDetails = {
       id: uuidv4(),
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      jobPositon: this.jobPositon,
+      jobPosition: this.jobPosition,
       selectedSkills: this.selectedSkills,
     };
-    this.userStorageService.addUser(userDetails);
-    // Save updated list to localStorage
-    // Clear all data
-    this.firstName = '';
-    this.lastName = '';
-    this.email = '';
-    this.jobPositon = '';
-    this.selectedSkills = [];
 
-    // Close modal
+    this.userStorageService.addUser(userDetails);
+
+    this.resetForm();
     this.isVisible = false;
+
     this.message.success('User saved successfully!');
-    this.message.success('Users stored in about page');
-    // Display success message with ng-zorro-antd
   }
 }
