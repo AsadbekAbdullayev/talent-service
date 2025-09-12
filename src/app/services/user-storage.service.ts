@@ -1,26 +1,36 @@
 import { Injectable } from '@angular/core';
 
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jobPosition: string;
+  selectedSkills: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserStorageService {
-  private storageKey = 'users';
+  private readonly storageKey = 'users';
 
-  constructor() {}
-
-  saveUsers(users: any[]): void {
+  saveUsers(users: User[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(users));
   }
 
-  getUsers(): any[] {
-    const storedUsers = localStorage.getItem(this.storageKey);
-    return storedUsers ? JSON.parse(storedUsers) : [];
+  getUsers(): User[] {
+    try {
+      const storedUsers = localStorage.getItem(this.storageKey);
+      return storedUsers ? (JSON.parse(storedUsers) as User[]) : [];
+    } catch {
+      return [];
+    }
   }
 
-  addUser(user: any): void {
+  addUser(user: User): void {
     const users = this.getUsers();
-    users.push(user);
-    this.saveUsers(users);
+    this.saveUsers([...users, user]);
   }
 
   clearUsers(): void {
