@@ -3,24 +3,26 @@
     [(nzVisible)]="isVisible"
     nzTitle="Enter your information and join us"
     (nzOnCancel)="handleCancel()"
-    (nzOnOk)="handleOk()"
+    [nzFooter]="modalFooter"
   >
     <ng-container *nzModalContent>
+      <!-- Name Inputs -->
       <div class="flex items-center justify-center gap-2.5">
         <input
           nz-input
-          placeholder="FirstName"
+          placeholder="First Name"
           [(ngModel)]="firstName"
           class="!h-10 !rounded-xl"
         />
         <input
           nz-input
-          placeholder="Lastname"
+          placeholder="Last Name"
           [(ngModel)]="lastName"
-          class="h-10 !rounded-xl"
+          class="!h-10 !rounded-xl"
         />
       </div>
 
+      <!-- Email & Job -->
       <div class="flex items-center justify-center gap-2.5 mt-2.5">
         <input
           nz-input
@@ -30,33 +32,36 @@
         />
         <input
           nz-input
-          placeholder="Job positon"
-          [(ngModel)]="jobPositon"
-          class="h-10 !rounded-xl"
+          placeholder="Job Position"
+          [(ngModel)]="jobPosition"
+          class="!h-10 !rounded-xl"
         />
       </div>
 
+      <!-- Skills -->
       <nz-select
         [(ngModel)]="selectedSkills"
         nzAllowClear
-        class="w-full"
+        class="w-full mt-2.5 !rounded-xl !h-10"
         nzPlaceHolder="Select your skills"
-        style="margin-top: 10px; border-radius: 12px; height: 40px"
         nzMode="multiple"
       >
-        @for (item of skills; track item) {
-        <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
-        }
+        <nz-option
+          *ngFor="let item of skills; trackBy: trackBySkill"
+          [nzLabel]="item"
+          [nzValue]="item"
+        ></nz-option>
       </nz-select>
     </ng-container>
 
-    <div *nzModalFooter>
+    <!-- Footer Template -->
+    <ng-template #modalFooter>
       <div class="flex items-center justify-end gap-2.5">
         <button
           nz-button
           nzType="default"
           (click)="handleCancel()"
-          class="mt-5 cursor-pointer inline-block px-3 py-2 bg-white !text-black rounded-lg shadow-md"
+          class="mt-2 cursor-pointer px-3 py-2 bg-white !text-black rounded-lg shadow-md"
         >
           Back
         </button>
@@ -64,17 +69,18 @@
           nz-button
           nzType="primary"
           (click)="submitForm()"
-          class="mt-5 cursor-pointer inline-block px-3 py-2 bg-blue-500 !text-white rounded-lg shadow-md hover:bg-blue-700"
+          class="mt-2 cursor-pointer px-3 py-2 bg-blue-500 !text-white rounded-lg shadow-md hover:bg-blue-700"
         >
           Send
         </button>
       </div>
-    </div>
+    </ng-template>
   </nz-modal>
 
+  <!-- Trigger Button -->
   <button
     (click)="showModal()"
-    class="mt-5 cursor-pointer inline-block px-6 py-3 bg-blue-600 !text-white rounded-lg shadow-md hover:bg-blue-700"
+    class="mt-5 cursor-pointer px-6 py-3 bg-blue-600 !text-white rounded-lg shadow-md hover:bg-blue-700"
   >
     Registration
   </button>
