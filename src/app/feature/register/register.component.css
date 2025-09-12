@@ -1,15 +1,14 @@
-.nz-select {
+::ng-deep .ant-select {
   width: 100%;
-  border-radius: 12px !important;
+  border-radius: 12px;
 }
+
 ::ng-deep .ant-select-selector {
-  border-radius: 12px !important;
-  height: 40px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  height: 40px !important; /* Adjust height as needed */
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
+  border-radius: 12px;
+  height: 40px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
